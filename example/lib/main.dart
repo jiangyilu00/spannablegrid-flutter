@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _singleCell = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SpannableGrid(
-              columns: 4,
-              rows: 4,
+              columns: 8,
+              rows: 8,
+              gridSize:SpannableGridSize.parentHeight,
               cells: _getCells(),
+             // emptyCellView:InkWell(onTap: (){},child: ,),
+              showGrid: true,
               onCellChanged: (cell) { print('Cell ${cell.id} changed'); },
             ),
             Padding(
@@ -88,22 +92,27 @@ class _MyHomePageState extends State<MyHomePage> {
       result.add(SpannableGridCellData(
         column: 1,
         row: 1,
-        columnSpan: 2,
-        rowSpan: 2,
+        columnSpan: 1,
+        rowSpan: 1,
         id: "Test Cell 1",
         child: Container(
           color: Colors.lime,
-          child: Center(
-            child: Text("Tile 2x2",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
-            ),
+          child: InkWell(
+            onTap: (){
+              print("1111111");
+            },
+              child: Center(
+                child: Text("Til1e 2x2",
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline6,
+                ),
+              ),
           ),
         ),
       ));
-      result.add(SpannableGridCellData(
+      /*result.add(SpannableGridCellData(
         column: 4,
         row: 1,
         columnSpan: 1,
@@ -156,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-      ));
+      ));*/
     }
     return result;
   }

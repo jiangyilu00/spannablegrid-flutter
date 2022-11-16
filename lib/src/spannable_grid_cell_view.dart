@@ -116,7 +116,8 @@ class SpannableGridCellView extends StatelessWidget {
               height: size.height,
               child: result,
             ),
-            childWhenDragging: const SizedBox.shrink(),
+            //childWhenDragging: const SizedBox.shrink(),
+            childWhenDragging: Container(color: Colors.blue,),
             data: data,
           );
         }

@@ -91,7 +91,7 @@ class SpannableGridStyle {
     this.backgroundColor = Colors.black12,
     this.contentOpacity = 0.5,
     this.selectedCellDecoration,
-    this.spacing = 2.0,
+    this.spacing = 0.5,
   });
 
   /// A color of empty cells.

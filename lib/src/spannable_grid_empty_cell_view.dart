@@ -4,8 +4,8 @@ import 'package:spannable_grid/spannable_grid.dart';
 
 import 'spannable_grid_cell_data.dart';
 
-class SpannableGridEmptyCellView extends StatelessWidget {
-  const SpannableGridEmptyCellView({
+class SpannableGridEmptyCellView extends StatefulWidget {
+  SpannableGridEmptyCellView({
     Key? key,
     required this.data,
     required this.style,
@@ -14,6 +14,7 @@ class SpannableGridEmptyCellView extends StatelessWidget {
     this.content,
     this.isEditing = false,
   }) : super(key: key);
+
 
   final SpannableGridCellData data;
 
@@ -26,22 +27,41 @@ class SpannableGridEmptyCellView extends StatelessWidget {
   final Widget? content;
 
   final bool isEditing;
+  @override
+  _SpannableGridEmptyCellViewState createState() => _SpannableGridEmptyCellViewState();
+}
+
+
+class _SpannableGridEmptyCellViewState extends State<SpannableGridEmptyCellView>{
+
+
+
+  bool cellEditing = false;
 
   @override
   Widget build(BuildContext context) {
-    final emptyCellView = content ??
-        Container(
-          color: style.backgroundColor,
+    final emptyCellView = widget.content ??
+        InkWell(
+          onTap: (){
+            print("单价。。。。。。。${widget.data.id }");
+            setState(() {
+              cellEditing = !cellEditing;
+            });
+            //cellEditing =
+          },
+          child: cellEditing?Container(color: Colors.red,):Container(color: Colors.green,),
         );
-    return isEditing
+    return widget.isEditing
         ? DragTarget<SpannableGridCellData>(
-            builder: (context, List<SpannableGridCellData?> candidateData,
-                rejectedData) {
-              return emptyCellView;
-            },
-            onWillAccept: (data) => onWillAccept(data!),
-            onAccept: (data) => onAccept(data),
-          )
+      builder: (context, List<SpannableGridCellData?> candidateData,
+          rejectedData) {
+        return emptyCellView;
+      },
+      onWillAccept: (data) => widget.onWillAccept(data!),
+      onAccept: (data) => widget.onAccept(data),
+    )
         : emptyCellView;
   }
+
+
 }

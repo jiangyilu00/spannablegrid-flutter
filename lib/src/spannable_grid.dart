@@ -64,6 +64,8 @@ class SpannableGrid extends StatefulWidget {
   /// Number of rows
   final int rows;
 
+
+
   /// How an editing mode should work.
   ///
   /// Defines if the editing mode is supported and what actions are recognized to
@@ -153,8 +155,9 @@ class _SpannableGridState extends State<SpannableGrid> {
             spacing: widget.style.spacing,
             gridSize: widget.gridSize,
             onCellSizeCalculated: (size) {
-              _cellSize = size;
-            }),
+              //_cellSize = size;
+            }
+          ),
         children: _children,
       ),
     );
@@ -167,18 +170,19 @@ class _SpannableGridState extends State<SpannableGrid> {
       case SpannableGridSize.parentWidth:
       case SpannableGridSize.parentHeight:
         return AspectRatio(
-          aspectRatio: widget.columns / widget.rows,
+          aspectRatio: widget.columns / (widget.rows*1.2),//单元格宽高比
           child: child,
         );
     }
   }
 
+  //长按拖动
   void _onEnterEditing(SpannableGridCellData cell) {
-    setState(() {
+  /*  setState(() {
       _isEditing = true;
       _editingCell = _cells[cell.id];
       _updateCellsAndChildren();
-    });
+    });*/
   }
 
   void _onExitEditing() {
@@ -194,10 +198,12 @@ class _SpannableGridState extends State<SpannableGrid> {
     _cells.clear();
     _children.clear();
     if (_isEditing || widget.showGrid) {
+      //空白格
       _addEmptyCellsAndChildren();
     }
     _addContentCells();
     _calculateAvailableCells();
+    //内容格
     _addContentChildren();
   }
 
@@ -281,10 +287,10 @@ class _SpannableGridState extends State<SpannableGrid> {
         onEnterEditing: () => _onEnterEditing(cell),
         onExitEditing: _onExitEditing,
         size: _cellSize == null
-            ? const Size(0.0, 0.0)
+            ? const Size(20.0, 10.0)
             : Size(
                 cell.columnSpan * _cellSize!.width - widget.style.spacing * 2,
-                cell.rowSpan * _cellSize!.height - widget.style.spacing * 2),
+            (cell.rowSpan * _cellSize!.height - widget.style.spacing * 2)),
       );
       _children.add(LayoutId(
         id: cell.id,
