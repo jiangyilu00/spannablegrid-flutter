@@ -8,7 +8,7 @@ import 'spannable_grid_empty_cell_view.dart';
 import 'spannable_grid_options.dart';
 
 /// A grid widget that allows its items to span columns and rows and supports
-/// editing.
+/// editing.   
 ///
 /// Widget layouts its children (defined in [cells]) in a grid of fixed [columns]
 /// and [rows].
