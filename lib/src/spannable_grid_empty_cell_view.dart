@@ -49,7 +49,7 @@ class _SpannableGridEmptyCellViewState extends State<SpannableGridEmptyCellView>
             });
             //cellEditing =
           },
-          child: cellEditing?Container(color: Colors.red,):Container(color: Colors.green,),
+          child: cellEditing?Container(child: Icon(Icons.add,color: Colors.grey,),):Container(),
         );
     return widget.isEditing
         ? DragTarget<SpannableGridCellData>(
