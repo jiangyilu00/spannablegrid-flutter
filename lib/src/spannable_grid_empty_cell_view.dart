@@ -49,7 +49,31 @@ class _SpannableGridEmptyCellViewState extends State<SpannableGridEmptyCellView>
             });
             //cellEditing =
           },
-          child: cellEditing?Container(child: Icon(Icons.add,color: Colors.grey,),):Container(),
+          child: cellEditing?Container(child: Icon(Icons.add,color: Colors.grey,),decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                width: 0.1,//宽度
+                color: Colors.blue, //边框颜色
+              ),bottom: BorderSide(
+              width: 0.1,//宽度
+              color: Colors.blue, //边框颜色
+            ),
+            ),
+          ),):Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  left: BorderSide(
+                    width: 0.1,//宽度
+                    color: Colors.blue, //边框颜色
+                  ),bottom: BorderSide(
+                    width: 0.1,//宽度
+                    color: Colors.blue, //边框颜色
+                  ),
+                ),
+              ),
+
+          ),
+          //child: cellEditing?Container(color: Colors.red,):Container(color: Colors.green,),
         );
     return widget.isEditing
         ? DragTarget<SpannableGridCellData>(

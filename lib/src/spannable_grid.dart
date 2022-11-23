@@ -286,11 +286,7 @@ class _SpannableGridState extends State<SpannableGrid> {
         onDragStarted: (localPosition) => _dragLocalPosition = localPosition,
         onEnterEditing: () => _onEnterEditing(cell),
         onExitEditing: _onExitEditing,
-        size: _cellSize == null
-            ? const Size(20.0, 10.0)
-            : Size(
-                cell.columnSpan * _cellSize!.width - widget.style.spacing * 2,
-            (cell.rowSpan * _cellSize!.height - widget.style.spacing * 2)),
+        size: _cellSize == null ? const Size(20.0, 10.0) : Size( cell.columnSpan * _cellSize!.width - widget.style.spacing * 2, (cell.rowSpan * _cellSize!.height - widget.style.spacing * 2)),
       );
       _children.add(LayoutId(
         id: cell.id,

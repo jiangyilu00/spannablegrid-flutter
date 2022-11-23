@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               cells: _getCells(),
              // emptyCellView:InkWell(onTap: (){},child: ,),
               showGrid: true,
-              onCellChanged: (cell) { print('Cell ${cell.id} changed'); },
+              onCellChanged: (cell) { print('Cel2l ${cell.id} changed'); },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
